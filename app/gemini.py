@@ -7,7 +7,7 @@ from app.observability import trace
 @lru_cache
 def client():
     return genai.Client(
-        api_key=settings().genai_api_key
+        api_key=settings().gemini_api_key
     )
 
 
@@ -16,7 +16,7 @@ def embed(text):
     s = settings()
 
     result = client().models.embed_content(
-        models=s.gemini_embed_model,
+        model=s.gemini_embed_model,
         contents=text,
         config=types.EmbedContentConfig(
             task_type="RETRIEVAL_DOCUMENT",
