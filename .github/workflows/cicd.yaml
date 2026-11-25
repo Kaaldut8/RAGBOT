@@ -121,6 +121,11 @@ jobs:
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GROQ_CHAT_MODEL: ${{ secrets.GROQ_CHAT_MODEL }}
+        run: |
+          set -euo pipefail
+          test -n "$GROQ_API_KEY"
+          test -n "$GROQ_CHAT_MODEL"
+          echo "Groq credentials configured"
       
       # ----------------------------------------
       # GEMINI AUTHENTICATION
@@ -130,6 +135,11 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_EMBED_MODEL: ${{ secrets.GEMINI_EMBED_MODEL }}
+        run: |
+          set -euo pipefail
+          test -n "$GEMINI_API_KEY"
+          test -n "$GEMINI_EMBED_MODEL"
+          echo "Gemini credentials configured"
 
       # ----------------------------------------
       # CONSTRUCT DOCKER IMAGE URI
@@ -194,6 +204,12 @@ jobs:
           RIUS_DISABLED: ${{ secrets.RIUS_DISABLED }}
           RIUS_CAPTURE_CONTENT: ${{ secrets.RIUS_CAPTURE_CONTENT }}
 
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GROQ_CHAT_MODEL: ${{ secrets.GROQ_CHAT_MODEL }}
+
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_EMBED_MODEL: ${{ secrets.GEMINI_EMBED_MODEL }}
+
           HITL_ENABLED: ${{ secrets.HITL_ENABLED }}
           MEMORY_TURNS: ${{ secrets.MEMORY_TURNS }}
 
@@ -221,7 +237,7 @@ jobs:
             GROQ_API_KEY
             GROQ_CHAT_MODEL
             GEMINI_API_KEY
-            GEMINI_API_KEY
+            GEMINI_EMBED_MODEL
             HITL_ENABLED
             MEMORY_TURNS
           )
@@ -279,6 +295,14 @@ jobs:
           RIUS_DISABLED: ${{ secrets.RIUS_DISABLED }}
           RIUS_CAPTURE_CONTENT: ${{ secrets.RIUS_CAPTURE_CONTENT }}
 
+          # Groq
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GROQ_CHAT_MODEL: ${{ secrets.GROQ_CHAT_MODEL }}
+
+          # Gemini
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_EMBED_MODEL: ${{ secrets.GEMINI_EMBED_MODEL }}
+
           # Application
           HITL_ENABLED: ${{ secrets.HITL_ENABLED }}
           MEMORY_TURNS: ${{ secrets.MEMORY_TURNS }}
@@ -307,6 +331,10 @@ jobs:
             -e RIUS_SERVICE_NAME \
             -e RIUS_DISABLED \
             -e RIUS_CAPTURE_CONTENT \
+            -e GROQ_API_KEY \
+            -e GROQ_CHAT_MODEL \
+            -e GEMINI_API_KEY \
+            -e GEMINI_EMBED_MODEL \
             -e HITL_ENABLED \
             -e MEMORY_TURNS \
             -p 8000:8000 \
