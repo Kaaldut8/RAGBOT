@@ -23,7 +23,7 @@ embedding_response = gemini_client.models.embed_content(
     contents="Hello Google Gemini",
     config=types.EmbedContentConfig(
         task_type="RETRIEVAL_DOCUMENT",
-        output_dimensionality=int(os.getenv("EMBED_DIM", "768"))
+        output_dimensionality=int(os.getenv("EMBED_DIM"))
     )
 )
 
