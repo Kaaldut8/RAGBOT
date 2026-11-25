@@ -200,6 +200,10 @@ jobs:
             RIUS_SERVICE_NAME
             RIUS_DISABLED
             RIUS_CAPTURE_CONTENT
+            GROQ_API_KEY
+            GROQ_CHAT_MODEL
+            GEMINI_API_KEY
+            GEMINI_API_KEY
             HITL_ENABLED
             MEMORY_TURNS
           )
