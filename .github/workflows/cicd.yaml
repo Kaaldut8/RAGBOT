@@ -114,6 +114,24 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
 
       # ----------------------------------------
+      # GROQ AUTHENTICATION
+      # ----------------------------------------
+
+      - name: Configure GROQ Credentials
+        with:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GROQ_CHAT_MODEL: ${{ secrets.GROQ_CHAT_MODEL }}
+      
+      # ----------------------------------------
+      # GEMINI AUTHENTICATION
+      # ----------------------------------------
+
+      - name: Configure GEMINI Credentials
+        with:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_EMBED_MODEL: ${{ secrets.GEMINI_EMBED_MODEL }}
+
+      # ----------------------------------------
       # CONSTRUCT DOCKER IMAGE URI
       # ----------------------------------------
 
